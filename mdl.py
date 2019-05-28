@@ -14,41 +14,41 @@ tokens = (
     "AMBIENT",
     "TORUS",
     "SPHERE",
-    "BOX", 
-    "LINE", 
-    "MESH", 
-    "TEXTURE", 
-    "SET", 
-    "MOVE", 
-    "SCALE", 
-    "ROTATE", 
-    "BASENAME", 
-    "SAVE_KNOBS", 
-    "TWEEN", 
-    "FRAMES", 
-    "VARY", 
-    "PUSH", 
-    "POP", 
-    "SAVE", 
-    "GENERATE_RAYFILES", 
-    "SHADING", 
-    "SHADING_TYPE", 
-    "SET_KNOBS", 
-    "FOCAL", 
-    "DISPLAY", 
-    "SCREEN", 
-    "WEB", 
+    "BOX",
+    "LINE",
+    "MESH",
+    "TEXTURE",
+    "SET",
+    "MOVE",
+    "SCALE",
+    "ROTATE",
+    "BASENAME",
+    "SAVE_KNOBS",
+    "TWEEN",
+    "FRAMES",
+    "VARY",
+    "PUSH",
+    "POP",
+    "SAVE",
+    "GENERATE_RAYFILES",
+    "SHADING",
+    "SHADING_TYPE",
+    "SET_KNOBS",
+    "FOCAL",
+    "DISPLAY",
+    "SCREEN",
+    "WEB",
     "CO"
 )
 
 reserved = {
-    "x" : "XYZ", 
-    "y" : "XYZ", 
-    "z" : "XYZ", 
-    "screen" : "SCREEN", 
+    "x" : "XYZ",
+    "y" : "XYZ",
+    "z" : "XYZ",
+    "screen" : "SCREEN",
     "light" : "LIGHT",
     "constants" : "CONSTANTS",
-    "save_coord_system" : "SAVE_COORDS", 
+    "save_coord_system" : "SAVE_COORDS",
     "camera" : "CAMERA",
     "ambient" : "AMBIENT",
     "torus" : "TORUS",
@@ -86,8 +86,8 @@ t_ignore = " \t"
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    if reserved.has_key(t.value):
-        t.type = reserved.get(t.value)
+    if t.value in reserved.keys():
+        t.type = reserved[t.value]
     return t
 
 def t_STRING(t):
@@ -109,7 +109,7 @@ def t_CO(t):
     return t
 
 def t_error(t):
-    print "TOKEN ERROR: " + str(t)
+    print("TOKEN ERROR: " + str(t))
 
 lex.lex()
 
@@ -378,7 +378,7 @@ def p_texture(p):
     symbols[p[2]] = ['texture', p[3:]]
 
 def p_error(p):
-    print 'SYNTAX ERROR: ' + str(p)
+    print('SYNTAX ERROR: ' + str(p))
 
 yacc.yacc()
 
